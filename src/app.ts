@@ -3,6 +3,8 @@ import * as mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
 import * as opn from 'opn';
 
+import users from './routes/users';
+
 const app = express();
 const port = 8080;
 
@@ -20,6 +22,8 @@ app.use(express.static('./public/'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use('/api/v1/users', users);
 
 app.get('*', (req, res) => {
   res.sendfile('public/index.html');
